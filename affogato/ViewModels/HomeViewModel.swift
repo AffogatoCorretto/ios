@@ -10,6 +10,7 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var specials: [Special] = []
+    @Published var searchText: String = ""
     @Published var errorMessage: String?
 
     private var apiService: APIService
@@ -29,6 +30,14 @@ class HomeViewModel: ObservableObject {
                     self?.errorMessage = error.localizedDescription
                 }
             }
+        }
+    }
+    
+    var filteredSpecials: [Special] {
+        if searchText.isEmpty {
+            return specials
+        } else {
+            return specials.filter { $0.itemName.localizedCaseInsensitiveContains(searchText) }
         }
     }
 }
