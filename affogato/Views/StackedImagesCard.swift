@@ -8,46 +8,54 @@
 import SwiftUI
 
 struct StackedImagesCard: View {
-    let images: [String]
-    let maxStacked: Int = 3
-    
+    let imageUrl: String
+    let title: String
+    let rating: Double
+    let ratingCount: Int
+
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                // If we have 3 images, show the left-tilted card
-                if images.count > 2, let thirdImageUrl = URL(string: images[2]) {
-                    RemoteImageView(url: thirdImageUrl)
-                        .frame(width: geometry.size.width - 20, height: geometry.size.height - 10)
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .rotationEffect(.degrees(-6))
-                        .offset(x: -5)
-                        .zIndex(1)
-                }
-                
-                // If we have 2 or more images, show the right-tilted card
-                if images.count > 1, let secondImageUrl = URL(string: images[1]) {
-                    RemoteImageView(url: secondImageUrl)
-                        .frame(width: geometry.size.width - 20, height: geometry.size.height - 10)
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .rotationEffect(.degrees(6))
-                        .offset(x: 5)
-                        .zIndex(2)
-                }
-                
-                // Main/front card always centered
-                if let firstImageUrl = URL(string: images[0]) {
-                    RemoteImageView(url: firstImageUrl)
-                        .frame(width: geometry.size.width - 10, height: geometry.size.height)
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .zIndex(3)
+        ZStack(alignment: .bottomLeading) {
+            // Image as the card background
+            RemoteImageView(url: URL(string: imageUrl))
+                .aspectRatio(3/4, contentMode: .fill) // Portrait aspect ratio
+                .frame(width: 180, height: 240) // Adjust as needed
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: 1) // Subtle border
+                )
+                .clipped()
+
+            // Gradient shading behind the text
+            LinearGradient(
+                colors: [Color.black.opacity(0.7), Color.black.opacity(0.3), Color.clear],
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .frame(height: 80) // Dark shading height
+
+            // Text content overlay
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+
+                HStack(spacing: 4) {
+                    Text("⭐️")
+                        .font(.footnote)
+                        .padding(4)
+//                        .background(Circle().fill(Color.yellow.opacity(0.8)))
+
+                    Text("\(rating, specifier: "%.1f") (\(ratingCount))")
+                        .font(.caption)
+                        .foregroundColor(.white.opacity(0.9))
                 }
             }
-            .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height)
+            .padding(12) // Padding for the text block
         }
-        .frame(height: 130) // Reduced overall height
+        .frame(width: 180, height: 240) // Card size
     }
 }
-
