@@ -20,9 +20,11 @@ struct HomeView: View {
     let categories = [
         Category(name: "Restaurants", iconName: "food-icon"),
         Category(name: "Nature", iconName: "tree-icon"),
-        Category(name: "Shopping", iconName: "cart-icon"),
+        Category(name: "Shopping", iconName: "shopping-icon"),
         Category(name: "Nightlife", iconName: "party-icon"),
         Category(name: "Athletics", iconName: "snorkeling-icon"),
+        Category(name: "Landmark", iconName: "pin-icon"),
+        Category(name: "Culture", iconName: "fan-icon"),
         Category(name: "Events", iconName: "calendar-icon"),
 
     ]
@@ -41,7 +43,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     // Title at the top
-                    Text("New experience awaits")
+                    Text("Explore the Unexpected")
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.top, 50)
@@ -55,7 +57,7 @@ struct HomeView: View {
                     }
                     .padding()
                     .background(Color(.systemGray6))
-                    .cornerRadius(10)
+                    .cornerRadius(25)
                     .padding(.horizontal)
                     
                     // Categories
