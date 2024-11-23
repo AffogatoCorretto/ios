@@ -2,7 +2,6 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
-    @State private var isSearchActive = false
     @State private var searchText: String = ""
     
     let columns = [
@@ -41,13 +40,33 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         Spacer().frame(height: 100)
-                        
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Categories")
+                        HStack {
+                            Text("Explore the Unexpected ✨")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .padding(.horizontal)
-
+                            Spacer()
+                        }
+                       
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                            TextField("Search for cool places", text: $searchText)
+                                .textFieldStyle(PlainTextFieldStyle())
+                                .foregroundColor(.primary)
+                                .accentColor(.purple) // Cursor color
+                        }
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(Color(.systemGray6))
+                        )
+                        .padding(.horizontal)
+                        
+                        // Categories Section
+                        VStack(alignment: .leading, spacing: 8) {
+                            
+                            
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 16) {
                                     ForEach(categories) { category in
@@ -71,7 +90,7 @@ struct HomeView: View {
                                 .padding(.horizontal)
                             }
                         }
-
+                        
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(filteredSpecials) { special in
                                 NavigationLink(destination: ActivityDetailView(special: special)) {
@@ -97,81 +116,67 @@ struct HomeView: View {
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
-
                         .padding(.horizontal, 10)
                     }
                     .padding(.bottom, 10)
                 }
                 
+                // Header
                 HStack {
-                    if isSearchActive {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.gray)
-                            TextField("Search", text: $searchText)
-                                .textFieldStyle(PlainTextFieldStyle())
-                            Button(action: {
-                                withAnimation {
-                                    isSearchActive = false
-                                    searchText = ""
-                                }
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(25)
-                        .transition(.opacity)
-                    } else {
-                        HStack {
-                            ZStack {
+                    // User icon
+                    ZStack {
+                        Circle()
+                            .fill(Color(hex: "#D6EAF8"))
+                            .frame(width: 50, height: 50)
+                            .overlay(
                                 Circle()
-                                    .fill(Color(hex: "#D6EAF8"))
-                                    .frame(width: 50, height: 50)
-                                    .overlay(
-                                        Circle()
-                                            .stroke(Color(hex: "#F5F5F5"), lineWidth: 1)
-                                    )
-                                Image("memoji")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50, height: 50)
-                            }
-                            .padding(.leading, 16)
-
-                            VStack(alignment: .center) {
-                                Text("Lower East Side")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-
-                                HStack {
-                                    Image(systemName: "cloud.fill")
-                                        .foregroundColor(.gray)
-                                    Text("23°C")
-                                        .font(.caption)
-                                }
-                            }
-                            .frame(maxWidth: .infinity)
-
-                            Button(action: {
-                                withAnimation {
-                                    isSearchActive = true
-                                }
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color(hex: "#F5F5F5"))
-                                        .frame(width: 40, height: 40)
-                                    Image(systemName: "magnifyingglass")
-                                        .foregroundColor(.black)
-                                        .font(.title3)
-                                }
+                                    .stroke(Color(hex: "#F5F5F5"), lineWidth: 1)
+                            )
+                        Image("memoji")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                    }
+//                    .padding(.leading, 10)
+                    
+                    // Location and weather
+                    VStack(alignment: .center) {
+                        Text("Lower East Side")
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                        
+                        HStack {
+                            Image(systemName: "cloud.fill")
+                                .foregroundColor(.gray)
+                            Text("23°C")
+                                .font(.caption)
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // Notification icon
+                    Button(action: {
+                        // Handle notification action here
+                        print("Notification tapped")
+                    }) {
+                        ZStack {
+                            Circle()
+                                .fill(Color(hex: "#F5F5F5"))
+                                .frame(width: 40, height: 40) // Match the size of other icons
+                            Image(systemName: "bell.fill")
+                                .foregroundColor(.black)
+                                .font(.title3)
+                            
+                            // Optional notification badge
+                            if true { // Replace with a condition for showing the badge
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 10, height: 10)
+                                    .offset(x: 12, y: -12)
                             }
                         }
                     }
+
                 }
                 .padding(.top, 50)
                 .padding(.bottom, 10)
