@@ -18,11 +18,13 @@ struct HomeView: View {
     }
     
     let categories = [
-        Category(name: "Hotels", iconName: "bed.double.fill"),
-        Category(name: "Restaurants", iconName: "fork.knife"),
-        Category(name: "Attractions", iconName: "star.fill"),
-        Category(name: "Shopping", iconName: "bag.fill"),
-        Category(name: "Nightlife", iconName: "moon.stars.fill")
+        Category(name: "Restaurants", iconName: "food-icon"),
+        Category(name: "Nature", iconName: "tree-icon"),
+        Category(name: "Shopping", iconName: "cart-icon"),
+        Category(name: "Nightlife", iconName: "party-icon"),
+        Category(name: "Athletics", iconName: "snorkeling-icon"),
+        Category(name: "Events", iconName: "calendar-icon"),
+
     ]
     
     // Computed property for filtered specials based on search text
@@ -63,11 +65,13 @@ struct HomeView: View {
                                 VStack {
                                     ZStack {
                                         Circle()
-                                            .fill(Color.blue)
+                                            .fill(Color(hex: "#F5F5F5"))
                                             .frame(width: 60, height: 60)
-                                        Image(systemName: category.iconName)
-                                            .foregroundColor(.white)
-                                            .font(.title)
+                                        Image(category.iconName)
+                                            .resizable()
+                                            .scaledToFill() // Ensures the image fills the circle
+                                            .frame(width: 60, height: 60) // Match the circle's size
+                                            .clipShape(Circle()) // Clips any excess outside the circle
                                     }
                                     Text(category.name)
                                         .font(.caption)

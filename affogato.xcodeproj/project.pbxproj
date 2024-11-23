@@ -33,6 +33,7 @@
 		CBC5146C2CCF2E1300F5015B /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5146B2CCF2E1300F5015B /* Helper.swift */; };
 		CBC5146E2CCF2E6500F5015B /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5146D2CCF2E6500F5015B /* TabBarButton.swift */; };
 		CBD462262CBC942700F6103F /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD462252CBC942700F6103F /* FullScreenImageView.swift */; };
+		CBE17B192CF24ED4003D031A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B182CF24ED4003D031A /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		CBC5146B2CCF2E1300F5015B /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CBC5146D2CCF2E6500F5015B /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		CBD462252CBC942700F6103F /* FullScreenImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
+		CBE17B182CF24ED4003D031A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		CB7F95E42CB36E0F002962D7 /* affogato */ = {
 			isa = PBXGroup;
 			children = (
+				CBE17B172CF24EC8003D031A /* Utils */,
 				CB7C8DA72CC68692007819DC /* Networking */,
 				CB50B8DD2CB385E0002198C2 /* Helpers */,
 				CB50B8D62CB38590002198C2 /* ViewModels */,
@@ -171,6 +174,14 @@
 				CB7282AF2CD2C8EE00EBDDC1 /* Special.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CBE17B172CF24EC8003D031A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CBE17B182CF24ED4003D031A /* Colors.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +260,7 @@
 				CB7C8DAF2CC68744007819DC /* ServiceStatusView.swift in Sources */,
 				CB50B8CC2CB38502002198C2 /* Activity.swift in Sources */,
 				CB7282B62CD2DAAA00EBDDC1 /* StackedImagesCard.swift in Sources */,
+				CBE17B192CF24ED4003D031A /* Colors.swift in Sources */,
 				CBC5146A2CCF2DE500F5015B /* ActivityDetailView.swift in Sources */,
 				CB7282B02CD2C8EE00EBDDC1 /* Special.swift in Sources */,
 				CBC5146C2CCF2E1300F5015B /* Helper.swift in Sources */,
