@@ -1,24 +1,57 @@
-//
-//  ContentView.swift
-//  affogato
-//
-//  Created by Kevin ahmad on 06/10/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var homeViewModel = HomeViewModel()
+    @StateObject private var postViewModel = PostViewModel()
+    
+    @State private var selectedTab = 0
+    @State private var showingPostView = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            ZStack(alignment: .bottom) {
+                TabView(selection: $selectedTab) {
+                    HomeView(viewModel: homeViewModel)
+                        .tag(0)
+                    
+                    Color.clear
+                        .tag(1)
+                    
+                    ServiceStatusView()
+                        .tag(2)
+                }
+                .safeAreaInset(edge: .bottom) {
+                    Color.clear.frame(height: 60)
+                }
+                
+                HStack(spacing: 0) {
+                    TabBarButton(systemName: "house.fill", isSelected: selectedTab == 0)
+                        .onTapGesture { selectedTab = 0 }
+                    
+                    TabBarButton(systemName: "plus", isSelected: selectedTab == 1)
+                        .onTapGesture {
+                            showingPostView = true
+                            selectedTab = 0
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.black)
+                                .frame(width: 50, height: 32)
+                        )
+                    
+                    TabBarButton(systemName: "person", isSelected: selectedTab == 2)
+                        .onTapGesture { selectedTab = 2 }
+                }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 10)
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(20)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: -5)
+                .padding(.horizontal)
+            }
+            .sheet(isPresented: $showingPostView) {
+                PostView(viewModel: postViewModel)
+            }
         }
-        .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
