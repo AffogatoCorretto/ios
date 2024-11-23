@@ -40,13 +40,7 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         Spacer().frame(height: 100)
-                        HStack {
-                            Text("Explore the Unexpected ✨")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .padding(.horizontal)
-                            Spacer()
-                        }
+                       
                        
                         HStack {
                             Image(systemName: "magnifyingglass")
@@ -65,7 +59,13 @@ struct HomeView: View {
                         
                         // Categories Section
                         VStack(alignment: .leading, spacing: 8) {
-                            
+                            HStack {
+                                Text("Categories")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .padding(.horizontal)
+                                Spacer()
+                            }
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 16) {
@@ -90,7 +90,13 @@ struct HomeView: View {
                                 .padding(.horizontal)
                             }
                         }
-                        
+                        HStack {
+                            Text("Explore the unexpected ✨")
+                                .font(.headline)
+                                .fontWeight(.bold)
+                                .padding(.horizontal)
+                            Spacer()
+                        }
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(filteredSpecials) { special in
                                 NavigationLink(destination: ActivityDetailView(special: special)) {
