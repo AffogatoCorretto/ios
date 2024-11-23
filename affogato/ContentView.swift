@@ -17,7 +17,7 @@ struct ContentView: View {
                     Color.clear
                         .tag(1)
                     
-                    ServiceStatusView()
+                    SavedView()
                         .tag(2)
                 }
                 .safeAreaInset(edge: .bottom) {
@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
                 
                 HStack(spacing: 0) {
-                    TabBarButton(systemName: "house.fill", isSelected: selectedTab == 0)
+                    TabBarButton(systemName: "sparkles", isSelected: selectedTab == 0)
                         .onTapGesture { selectedTab = 0 }
                     
                     TabBarButton(systemName: "plus", isSelected: selectedTab == 1)
@@ -39,8 +39,9 @@ struct ContentView: View {
                                 .frame(width: 50, height: 32)
                         )
                     
-                    TabBarButton(systemName: "person", isSelected: selectedTab == 2)
+                    TabBarButton(systemName: "heart.fill", isSelected: selectedTab == 2)
                         .onTapGesture { selectedTab = 2 }
+
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
