@@ -35,6 +35,7 @@
 		CBD462262CBC942700F6103F /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD462252CBC942700F6103F /* FullScreenImageView.swift */; };
 		CBE17B192CF24ED4003D031A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B182CF24ED4003D031A /* Colors.swift */; };
 		CBE17B1B2CF26C9F003D031A /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1A2CF26C9F003D031A /* SavedView.swift */; };
+		CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		CBD462252CBC942700F6103F /* FullScreenImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		CBE17B182CF24ED4003D031A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CBE17B1A2CF26C9F003D031A /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPopupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				CB7282B52CD2DAAA00EBDDC1 /* StackedImagesCard.swift */,
 				CB7282B72CD2DD4400EBDDC1 /* StarRating.swift */,
 				CBE17B1A2CF26C9F003D031A /* SavedView.swift */,
+				CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				CB50B8D12CB3855C002198C2 /* ActivityView.swift in Sources */,
 				CB50B8D32CB3856F002198C2 /* PostView.swift in Sources */,
 				CB50B8DA2CB385B1002198C2 /* PostViewModel.swift in Sources */,
+				CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */,
 				CB50B8D52CB38581002198C2 /* ProfileView.swift in Sources */,
 				CB7C8DAB2CC686CD007819DC /* ServiceStatus.swift in Sources */,
 				CB7282B22CD2C93400EBDDC1 /* SpecialsViewModel.swift in Sources */,

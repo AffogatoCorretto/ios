@@ -126,7 +126,7 @@ struct HomeView: View {
                     }
                     .padding(.bottom, 10)
                 }
-                
+                .edgesIgnoringSafeArea([.top, .bottom])
                 // Header
                 HStack {
                     // User icon
@@ -195,5 +195,6 @@ struct HomeView: View {
                 viewModel.fetchSpecials()
             }
         }
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
