@@ -11,8 +11,8 @@ import SwiftUI
 struct affogatoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .preferredColorScheme(.light)
+            SplashScreenView() // Start with the splash screen
+                .preferredColorScheme(.light) // Enforce light mode
         }
     }
 }

@@ -38,6 +38,7 @@
 		CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */; };
 		CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B202CF2BA0A003D031A /* NotificationView.swift */; };
 		CBE17B232CF2BB4C003D031A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B222CF2BB4C003D031A /* ImagePicker.swift */; };
+		CBE17B252CF2C257003D031A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B242CF2C257003D031A /* SplashScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPopupView.swift; sourceTree = "<group>"; };
 		CBE17B202CF2BA0A003D031A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		CBE17B222CF2BB4C003D031A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CBE17B242CF2C257003D031A /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				CBE17B1A2CF26C9F003D031A /* SavedView.swift */,
 				CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */,
 				CBE17B202CF2BA0A003D031A /* NotificationView.swift */,
+				CBE17B242CF2C257003D031A /* SplashScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBE17B252CF2C257003D031A /* SplashScreen.swift in Sources */,
 				CB7F95E82CB36E0F002962D7 /* ContentView.swift in Sources */,
 				CB50B8CF2CB38547002198C2 /* HomeView.swift in Sources */,
 				CB7282B82CD2DD4400EBDDC1 /* StarRating.swift in Sources */,

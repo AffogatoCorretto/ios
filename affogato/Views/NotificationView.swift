@@ -26,9 +26,12 @@ struct NotificationView: View {
             
             // Content
             VStack(spacing: 16) {
-                Image(systemName: "party.popper.fill")
-                    .font(.system(size: 80))
-                    .foregroundColor(.purple)
+                Image("robot-head")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 70, height: 70)
+                    .foregroundColor(.white)
+                
                 Text("Thanks for trying our app! 🎉")
                     .font(.title2)
                     .fontWeight(.semibold)
