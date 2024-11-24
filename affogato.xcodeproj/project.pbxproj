@@ -36,6 +36,7 @@
 		CBE17B192CF24ED4003D031A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B182CF24ED4003D031A /* Colors.swift */; };
 		CBE17B1B2CF26C9F003D031A /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1A2CF26C9F003D031A /* SavedView.swift */; };
 		CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */; };
+		CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B202CF2BA0A003D031A /* NotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		CBE17B182CF24ED4003D031A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CBE17B1A2CF26C9F003D031A /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPopupView.swift; sourceTree = "<group>"; };
+		CBE17B202CF2BA0A003D031A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				CB7282B72CD2DD4400EBDDC1 /* StarRating.swift */,
 				CBE17B1A2CF26C9F003D031A /* SavedView.swift */,
 				CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */,
+				CBE17B202CF2BA0A003D031A /* NotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				CB7282B22CD2C93400EBDDC1 /* SpecialsViewModel.swift in Sources */,
 				CB7282B42CD2CD2500EBDDC1 /* RemoteImageView.swift in Sources */,
 				CB7C8DA92CC686AE007819DC /* APIService.swift in Sources */,
+				CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */,
 				CBD462262CBC942700F6103F /* FullScreenImageView.swift in Sources */,
 				CB50B8DF2CB385EE002198C2 /* MockData.swift in Sources */,
 				CBC5146E2CCF2E6500F5015B /* TabBarButton.swift in Sources */,

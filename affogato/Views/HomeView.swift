@@ -3,7 +3,8 @@ import SwiftUI
 struct HomeView: View {
     @ObservedObject var viewModel = HomeViewModel()
     @State private var searchText: String = ""
-    
+    @State private var showingNotificationPage = false
+
     let columns = [
         GridItem(.flexible(), spacing: 10),
         GridItem(.flexible(), spacing: 10)
@@ -127,6 +128,10 @@ struct HomeView: View {
                     .padding(.bottom, 10)
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
+                .sheet(isPresented: $showingNotificationPage) {
+                    NotificationView()
+                }
+
                 // Header
                 HStack {
                     // User icon
@@ -161,14 +166,15 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity)
                     
                     // Notification icon
+                    // Notification icon
                     Button(action: {
-                        // Handle notification action here
-                        print("Notification tapped")
+                        // Present the NotificationView
+                        showingNotificationPage = true
                     }) {
                         ZStack {
                             Circle()
                                 .fill(Color(hex: "#F5F5F5"))
-                                .frame(width: 40, height: 40) // Match the size of other icons
+                                .frame(width: 40, height: 40)
                             Image(systemName: "bell.fill")
                                 .foregroundColor(.black)
                                 .font(.title3)
@@ -182,6 +188,7 @@ struct HomeView: View {
                             }
                         }
                     }
+
 
                 }
                 .padding(.top, 50)
@@ -197,4 +204,6 @@ struct HomeView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
     }
+    
 }
+
