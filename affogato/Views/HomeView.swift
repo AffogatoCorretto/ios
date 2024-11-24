@@ -138,13 +138,13 @@ struct HomeView: View {
                     NavigationLink(destination: ProfileView()) {
                         ZStack {
                             Circle()
-                                .fill(Color(hex: "#D6EAF8"))
-                                .frame(width: 50, height: 50)
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color(hex: "#F5F5F5"), lineWidth: 1)
-                                )
-                            Image(uiImage: UIImage(data: UserDefaults.standard.data(forKey: "memojiImageData") ?? Data()) ?? UIImage(named: "memoji")!)
+                                    .fill(Color(hex: "#D6EAF8"))
+                                    .frame(width: 50, height: 50)
+//                                    .overlay(
+//                                        Circle()
+//                                            .stroke(Color.gray, lineWidth: 1)
+//                                    )
+                            Image("memoji")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
@@ -153,14 +153,14 @@ struct HomeView: View {
                     
                     // Location and weather
                     VStack(alignment: .center) {
-                        Text("Lower East Side")
+                        Text("Greenwich Village")
                             .font(.subheadline)
                             .fontWeight(.medium)
                         
                         HStack {
                             Image(systemName: "cloud.fill")
                                 .foregroundColor(.gray)
-                            Text("23°C")
+                            Text("10°C")
                                 .font(.caption)
                         }
                     }
