@@ -19,11 +19,11 @@ struct HomeView: View {
     let categories = [
         Category(name: "Restaurants", iconName: "food-icon"),
         Category(name: "Nature", iconName: "tree-icon"),
-        Category(name: "Shopping", iconName: "shopping-icon"),
+        Category(name: "Culture", iconName: "fan-icon"),
         Category(name: "Nightlife", iconName: "party-icon"),
         Category(name: "Athletics", iconName: "snorkeling-icon"),
         Category(name: "Landmark", iconName: "pin-icon"),
-        Category(name: "Culture", iconName: "fan-icon"),
+        Category(name: "Shopping", iconName: "shopping-icon"),
         Category(name: "Events", iconName: "calendar-icon")
     ]
     
@@ -135,20 +135,21 @@ struct HomeView: View {
                 // Header
                 HStack {
                     // User icon
-                    ZStack {
-                        Circle()
-                            .fill(Color(hex: "#D6EAF8"))
-                            .frame(width: 50, height: 50)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color(hex: "#F5F5F5"), lineWidth: 1)
-                            )
-                        Image("memoji")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
+                    NavigationLink(destination: ProfileView()) {
+                        ZStack {
+                            Circle()
+                                .fill(Color(hex: "#D6EAF8"))
+                                .frame(width: 50, height: 50)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color(hex: "#F5F5F5"), lineWidth: 1)
+                                )
+                            Image(uiImage: UIImage(data: UserDefaults.standard.data(forKey: "memojiImageData") ?? Data()) ?? UIImage(named: "memoji")!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                        }
                     }
-//                    .padding(.leading, 10)
                     
                     // Location and weather
                     VStack(alignment: .center) {

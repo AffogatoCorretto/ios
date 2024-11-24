@@ -37,6 +37,7 @@
 		CBE17B1B2CF26C9F003D031A /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1A2CF26C9F003D031A /* SavedView.swift */; };
 		CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */; };
 		CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B202CF2BA0A003D031A /* NotificationView.swift */; };
+		CBE17B232CF2BB4C003D031A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B222CF2BB4C003D031A /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		CBE17B1A2CF26C9F003D031A /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPopupView.swift; sourceTree = "<group>"; };
 		CBE17B202CF2BA0A003D031A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		CBE17B222CF2BB4C003D031A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				CBE17B182CF24ED4003D031A /* Colors.swift */,
 				CB50B8DE2CB385EE002198C2 /* MockData.swift */,
 				CBC5146B2CCF2E1300F5015B /* Helper.swift */,
+				CBE17B222CF2BB4C003D031A /* ImagePicker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				CB50B8D12CB3855C002198C2 /* ActivityView.swift in Sources */,
 				CB50B8D32CB3856F002198C2 /* PostView.swift in Sources */,
 				CB50B8DA2CB385B1002198C2 /* PostViewModel.swift in Sources */,
+				CBE17B232CF2BB4C003D031A /* ImagePicker.swift in Sources */,
 				CBE17B1F2CF26FAB003D031A /* SearchPopupView.swift in Sources */,
 				CB50B8D52CB38581002198C2 /* ProfileView.swift in Sources */,
 				CB7C8DAB2CC686CD007819DC /* ServiceStatus.swift in Sources */,

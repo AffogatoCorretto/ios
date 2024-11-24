@@ -32,7 +32,6 @@ struct ContentView: View {
                     Spacer()
                     
                     // Search Button
-                    // Search Button
                     TabBarButton(systemName: "magnifyingglass", isSelected: false, foregroundColor: .white)
                         .onTapGesture {
                             withAnimation(.spring()) {
@@ -52,7 +51,6 @@ struct ContentView: View {
                                 .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
                         )
                         .offset(y: -30) // Lift the search button above the navbar
-
                     
                     Spacer()
                     
@@ -62,7 +60,6 @@ struct ContentView: View {
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)
-
                 .padding(.horizontal)
                 .padding(.bottom, 20) // Lift navbar off the screen bottom
                 
