@@ -12,6 +12,8 @@ class HomeViewModel: ObservableObject {
     @Published var specials: [Special] = []
     @Published var searchText: String = ""
     @Published var errorMessage: String?
+    @Published var isSearching = false
+    @Published var searchResults: [Special] = []
 
     private var apiService: APIService
     
@@ -38,6 +40,33 @@ class HomeViewModel: ObservableObject {
             return specials
         } else {
             return specials.filter { $0.itemName.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
+    func performSearch() {
+        guard !searchText.isEmpty else {
+            // If search text is empty, revert to showing specials
+            isSearching = false
+            searchResults = []
+            return
+        }
+
+        isSearching = true
+        apiService.search(query: searchText) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    // Decode search results
+                    do {
+                        let decodedResponse = try JSONDecoder().decode(SpecialsResponse.self, from: data)
+                        self?.searchResults = decodedResponse.result
+                    } catch {
+                        self?.errorMessage = error.localizedDescription
+                    }
+                case .failure(let error):
+                    self?.errorMessage = error.localizedDescription
+                }
+            }
         }
     }
 }

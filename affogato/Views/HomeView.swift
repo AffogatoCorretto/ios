@@ -35,6 +35,18 @@ struct HomeView: View {
         }
     }
     
+    var displayedItems: [Special] {
+        if viewModel.isSearching && !viewModel.searchText.isEmpty {
+            return viewModel.searchResults
+        } else if searchText.isEmpty {
+            return viewModel.specials
+        } else {
+            // If user typed text but never triggered search, you can either show filtered specials or do nothing
+            return viewModel.filteredSpecials
+        }
+    }
+
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
@@ -49,7 +61,12 @@ struct HomeView: View {
                             TextField("Search for cool places", text: $searchText)
                                 .textFieldStyle(PlainTextFieldStyle())
                                 .foregroundColor(.primary)
-                                .accentColor(.purple) // Cursor color
+                                .accentColor(.purple)
+                                .onSubmit {
+                                    viewModel.searchText = searchText
+                                    viewModel.performSearch()
+                                }
+
                         }
                         .padding()
                         .background(
@@ -99,9 +116,9 @@ struct HomeView: View {
                             Spacer()
                         }
                         LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(filteredSpecials) { special in
+                            ForEach(displayedItems) { special in
                                 NavigationLink(destination: ActivityDetailView(special: special)) {
-                                    if let imageUrl = special.images.first { // Ensure there's at least one image
+                                    if let imageUrl = special.images.first {
                                         StackedImagesCard(
                                             imageUrl: imageUrl,
                                             title: special.itemName,
@@ -109,7 +126,6 @@ struct HomeView: View {
                                             ratingCount: special.ratingCount
                                         )
                                     } else {
-                                        // Fallback if no image is available
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color.gray.opacity(0.3))
                                             .frame(width: 180, height: 240)
@@ -123,6 +139,7 @@ struct HomeView: View {
                                 .buttonStyle(PlainButtonStyle())
                             }
                         }
+
                         .padding(.horizontal, 10)
                     }
                     .padding(.bottom, 10)
