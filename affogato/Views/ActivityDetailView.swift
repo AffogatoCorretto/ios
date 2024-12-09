@@ -98,6 +98,43 @@ struct ActivityDetailView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
+                    // Parse sub_category if available
+                    if let subCategoryString = special.subCategory,
+                       let data = subCategoryString.data(using: .utf8),
+                       let subCategories = try? JSONDecoder().decode([String].self, from: data), !subCategories.isEmpty {
+                        Text("Sub Categories")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                        ForEach(subCategories, id: \.self) { subCat in
+                            Text("• \(subCat)")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+
+                    // Display description if available
+                    if !special.description.isEmpty {
+                        Text("Description")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                        Text(special.description)
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                    }
+
+                    if !special.category.isEmpty {
+                        Text("Category: \(special.category.capitalized.replacingOccurrences(of: "_&_", with: " & "))")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+
+                    if !special.priceRange.isEmpty {
+                        Text("Price Range: \(special.priceRange)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+
+
                     // Specialties Section
                     if !special.specialties.isEmpty {
                         Text("Specialties")
@@ -128,6 +165,7 @@ struct ActivityDetailView: View {
                     }
                 }
                 .padding()
+
             }
         }
         .edgesIgnoringSafeArea(.top)
