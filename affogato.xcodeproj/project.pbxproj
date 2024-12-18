@@ -39,6 +39,7 @@
 		CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B202CF2BA0A003D031A /* NotificationView.swift */; };
 		CBE17B232CF2BB4C003D031A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B222CF2BB4C003D031A /* ImagePicker.swift */; };
 		CBE17B252CF2C257003D031A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE17B242CF2C257003D031A /* SplashScreen.swift */; };
+		CBFB146F2D0731C600BB85BC /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFB146E2D0731C600BB85BC /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		CBE17B202CF2BA0A003D031A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		CBE17B222CF2BB4C003D031A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CBE17B242CF2C257003D031A /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		CBFB146E2D0731C600BB85BC /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				CBE17B1E2CF26FAB003D031A /* SearchPopupView.swift */,
 				CBE17B202CF2BA0A003D031A /* NotificationView.swift */,
 				CBE17B242CF2C257003D031A /* SplashScreen.swift */,
+				CBFB146E2D0731C600BB85BC /* ActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				CB7C8DAB2CC686CD007819DC /* ServiceStatus.swift in Sources */,
 				CB7282B22CD2C93400EBDDC1 /* SpecialsViewModel.swift in Sources */,
 				CB7282B42CD2CD2500EBDDC1 /* RemoteImageView.swift in Sources */,
+				CBFB146F2D0731C600BB85BC /* ActivityIndicator.swift in Sources */,
 				CB7C8DA92CC686AE007819DC /* APIService.swift in Sources */,
 				CBE17B212CF2BA0A003D031A /* NotificationView.swift in Sources */,
 				CBD462262CBC942700F6103F /* FullScreenImageView.swift in Sources */,

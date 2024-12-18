@@ -1,4 +1,3 @@
-
 //
 //  ActivityDetailView.swift
 //  affogato
@@ -34,6 +33,10 @@ struct ActivityDetailView: View {
                                     endPoint: .center
                                 )
                             )
+                            .contentShape(Rectangle()) // Makes the entire image tappable
+                            .onTapGesture {
+                                isFullScreenPresented = true
+                            }
 
                         // Custom back button
                         Button(action: {
@@ -73,16 +76,6 @@ struct ActivityDetailView: View {
                                     }
                                 }
                                 Spacer()
-                                Button(action: {
-                                    isFullScreenPresented = true
-                                }) {
-                                    Image(systemName: "arrow.up.left.and.arrow.down.right")
-                                        .font(.title)
-                                        .foregroundColor(.white)
-                                        .padding(10)
-                                        .background(Color.black.opacity(0.5))
-                                        .clipShape(Circle())
-                                }
                             }
                             .padding()
                             .background(
@@ -134,7 +127,6 @@ struct ActivityDetailView: View {
                             .foregroundColor(.secondary)
                     }
 
-
                     // Specialties Section
                     if !special.specialties.isEmpty {
                         Text("Specialties")
@@ -159,6 +151,10 @@ struct ActivityDetailView: View {
                                         .frame(height: 100)
                                         .cornerRadius(10)
                                         .clipped()
+                                        .onTapGesture {
+                                            // Show fullscreen for tapped image as well
+                                            isFullScreenPresented = true
+                                        }
                                 }
                             }
                         }
@@ -176,3 +172,43 @@ struct ActivityDetailView: View {
     }
 }
 
+struct FullScreenDetailImageView: View {
+    let special: Special
+    @Binding var isPresented: Bool
+    @State private var showDownloadConfirmation = false
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            TabView {
+                ForEach(special.images, id: \.self) { imageUrl in
+                    if let url = URL(string: imageUrl) {
+                        RemoteImageView(url: url)
+                            .aspectRatio(contentMode: .fit)
+                            .onTapGesture {
+                                isPresented = false
+                            }
+                    }
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .background(Color.black.edgesIgnoringSafeArea(.all))
+            
+            // Small subtle download button
+            Button(action: {
+                // Implement download logic here
+                showDownloadConfirmation = true
+            }) {
+                Image(systemName: "arrow.down.circle")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(.white)
+                    .padding(10)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+                    .padding([.top, .trailing], 20)
+            }
+        }
+        .alert(isPresented: $showDownloadConfirmation) {
+            Alert(title: Text("Downloaded"), message: Text("Image saved."), dismissButton: .default(Text("OK")))
+        }
+    }
+}

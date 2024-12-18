@@ -27,34 +27,23 @@ struct HomeView: View {
         Category(name: "Events", iconName: "calendar-icon")
     ]
     
-    var filteredSpecials: [Special] {
-        if searchText.isEmpty {
-            return viewModel.specials
-        } else {
-            return viewModel.specials.filter { $0.itemName.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
-    
     var displayedItems: [Special] {
         if viewModel.isSearching && !viewModel.searchText.isEmpty {
             return viewModel.searchResults
         } else if searchText.isEmpty {
             return viewModel.specials
         } else {
-            // If user typed text but never triggered search, you can either show filtered specials or do nothing
             return viewModel.filteredSpecials
         }
     }
 
-    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
                 ScrollView {
                     VStack(spacing: 16) {
                         Spacer().frame(height: 100)
-                       
-                       
+
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(.gray)
@@ -66,7 +55,6 @@ struct HomeView: View {
                                     viewModel.searchText = searchText
                                     viewModel.performSearch()
                                 }
-
                         }
                         .padding()
                         .background(
@@ -108,6 +96,7 @@ struct HomeView: View {
                                 .padding(.horizontal)
                             }
                         }
+                        
                         HStack {
                             Text("Explore the unexpected ✨")
                                 .font(.headline)
@@ -115,34 +104,47 @@ struct HomeView: View {
                                 .padding(.horizontal)
                             Spacer()
                         }
-                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(displayedItems) { special in
-                                NavigationLink(destination: ActivityDetailView(special: special)) {
-                                    if let imageUrl = special.images.first {
-                                        StackedImagesCard(
-                                            imageUrl: imageUrl,
-                                            title: special.itemName,
-                                            rating: special.rating,
-                                            ratingCount: special.ratingCount
-                                        )
-                                    } else {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.gray.opacity(0.3))
-                                            .frame(width: 180, height: 240)
-                                            .overlay(
-                                                Text("No Image")
-                                                    .font(.caption)
-                                                    .foregroundColor(.gray)
-                                            )
-                                    }
-                                }
-                                .buttonStyle(PlainButtonStyle())
+
+                        // If searching and loading, show a loading indicator
+                        if viewModel.isLoading && viewModel.isSearching {
+                            VStack(spacing: 16) {
+                                ActivityIndicator(isAnimating: .constant(true), style: .large)
+                                Text("Loading...")
+                                    .foregroundColor(.gray)
                             }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .padding(.top, 50)
+                        } else {
+                            // Show results
+                            LazyVGrid(columns: columns, spacing: 10) {
+                                ForEach(displayedItems) { special in
+                                    NavigationLink(destination: ActivityDetailView(special: special)) {
+                                        if let imageUrl = special.images.first {
+                                            StackedImagesCard(
+                                                imageUrl: imageUrl,
+                                                title: special.itemName,
+                                                rating: special.rating,
+                                                ratingCount: special.ratingCount
+                                            )
+                                        } else {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color.gray.opacity(0.3))
+                                                .frame(width: 180, height: 240)
+                                                .overlay(
+                                                    Text("No Image")
+                                                        .font(.caption)
+                                                        .foregroundColor(.gray)
+                                                )
+                                        }
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
+                                }
+                            }
+                            .padding(.horizontal, 10)
                         }
 
-                        .padding(.horizontal, 10)
+//                        .padding(.bottom, 200)
                     }
-                    .padding(.bottom, 10)
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
                 .sheet(isPresented: $showingNotificationPage) {
@@ -155,12 +157,8 @@ struct HomeView: View {
                     NavigationLink(destination: ProfileView()) {
                         ZStack {
                             Circle()
-                                    .fill(Color(hex: "#D6EAF8"))
-                                    .frame(width: 50, height: 50)
-//                                    .overlay(
-//                                        Circle()
-//                                            .stroke(Color.gray, lineWidth: 1)
-//                                    )
+                                .fill(Color(hex: "#D6EAF8"))
+                                .frame(width: 50, height: 50)
                             Image("memoji")
                                 .resizable()
                                 .scaledToFit()
@@ -184,9 +182,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity)
                     
                     // Notification icon
-                    // Notification icon
                     Button(action: {
-                        // Present the NotificationView
                         showingNotificationPage = true
                     }) {
                         ZStack {
@@ -198,7 +194,7 @@ struct HomeView: View {
                                 .font(.title3)
                             
                             // Optional notification badge
-                            if true { // Replace with a condition for showing the badge
+                            if true {
                                 Circle()
                                     .fill(Color.red)
                                     .frame(width: 10, height: 10)
@@ -206,8 +202,6 @@ struct HomeView: View {
                             }
                         }
                     }
-
-
                 }
                 .padding(.top, 50)
                 .padding(.bottom, 10)
@@ -219,9 +213,25 @@ struct HomeView: View {
             .onAppear {
                 viewModel.fetchSpecials()
             }
+
+            // Global loading overlay
+            if viewModel.isLoading && !viewModel.isSearching {
+                ZStack {
+                    Color.black.opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    VStack(spacing: 16) {
+                        ActivityIndicator(isAnimating: .constant(true), style: .large)
+                        Text("Loading...")
+                            .foregroundColor(.white)
+                    }
+                    .padding()
+                    .background(Color.black.opacity(0.8))
+                    .cornerRadius(10)
+                }
+            }
         }
         .edgesIgnoringSafeArea(.bottom)
     }
     
 }
-

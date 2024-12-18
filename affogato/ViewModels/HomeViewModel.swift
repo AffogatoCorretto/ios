@@ -12,9 +12,10 @@ class HomeViewModel: ObservableObject {
     @Published var specials: [Special] = []
     @Published var searchText: String = ""
     @Published var errorMessage: String?
-    @Published var isSearching = false
     @Published var searchResults: [Special] = []
-
+    @Published var isSearching = false
+    @Published var isLoading = false
+    
     private var apiService: APIService
     
     init(apiService: APIService = .shared) {
@@ -44,29 +45,29 @@ class HomeViewModel: ObservableObject {
     }
     
     func performSearch() {
-        guard !searchText.isEmpty else {
-            // If search text is empty, revert to showing specials
-            isSearching = false
-            searchResults = []
-            return
-        }
+            guard !searchText.isEmpty else {
+                isSearching = false
+                searchResults = []
+                return
+            }
 
-        isSearching = true
-        apiService.search(query: searchText) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    // Decode search results
-                    do {
-                        let decodedResponse = try JSONDecoder().decode(SpecialsResponse.self, from: data)
-                        self?.searchResults = decodedResponse.result
-                    } catch {
+            isSearching = true
+            isLoading = true
+            apiService.search(query: searchText) { [weak self] result in
+                DispatchQueue.main.async {
+                    self?.isLoading = false
+                    switch result {
+                    case .success(let data):
+                        do {
+                            let decodedResponse = try JSONDecoder().decode(SpecialsResponse.self, from: data)
+                            self?.searchResults = decodedResponse.result
+                        } catch {
+                            self?.errorMessage = error.localizedDescription
+                        }
+                    case .failure(let error):
                         self?.errorMessage = error.localizedDescription
                     }
-                case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
                 }
             }
         }
-    }
 }

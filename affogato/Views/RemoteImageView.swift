@@ -22,13 +22,15 @@ class ImageCache {
 
 struct RemoteImageView: View {
     let url: URL?
+    var contentMode: ContentMode = .fill
+    var allowTapGesture: Bool = false
+    
     @State private var imageData: Data?
     @State private var retryCount = 0
     @State private var isLoading = false
     @State private var currentTask: URLSessionDataTask?
     private let maxRetries = 3
     private let fallbackImages = ["french-cuisine", "ikebana", "jewelry", "perfume", "pottery"]
-    var allowTapGesture: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -36,12 +38,12 @@ struct RemoteImageView: View {
                 if let data = imageData, let uiImage = UIImage(data: data) {
                     Image(uiImage: uiImage)
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: contentMode)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .clipped()
                 } else {
                     ZStack {
-                        Color.black // Black background
+                        Color.black
                         if isLoading {
                             ProgressView()
                                 .scaleEffect(1.5)
@@ -56,9 +58,7 @@ struct RemoteImageView: View {
             loadImage()
         }
         .onChange(of: url) { _ in
-            // Cancel any ongoing task
             currentTask?.cancel()
-            // Reset states
             withAnimation {
                 imageData = nil
                 retryCount = 0
@@ -74,7 +74,6 @@ struct RemoteImageView: View {
     private func loadImage() {
         guard let url = url else { return }
         
-        // Check cache first
         if let cachedData = ImageCache.shared.get(url) {
             imageData = cachedData
             isLoading = false
@@ -82,13 +81,10 @@ struct RemoteImageView: View {
         }
         
         isLoading = true
-        
-        // Cancel any existing task
         currentTask?.cancel()
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
-                // Check if the error is a cancellation
                 let isCancelled = (error as? URLError)?.code == .cancelled
                 
                 if error == nil, let data = data {
@@ -98,7 +94,6 @@ struct RemoteImageView: View {
                         self.isLoading = false
                     }
                 } else if retryCount < maxRetries && !isCancelled {
-                    // Only retry if error is not due to cancellation
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         retryCount += 1
                         loadImage()
